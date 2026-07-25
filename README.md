@@ -46,7 +46,7 @@ Supports **VS Code Copilot**, **OpenCode**, **Claude Code**, **Cursor**, **Winds
 | Resource | Link |
 |----------|------|
 | 📖 **Agent Reference** | [agents/README.md](agents/README.md) — all 14 agents |
-| 📖 **Skills Reference** | [skills/README.md](skills/README.md) — all 44 skills |
+| 📖 **Skills Reference** | [skills/README.md](skills/README.md) — all 40 skills |
 | 🚀 **Installation Guide** | [docs/INSTALLATION.md](docs/INSTALLATION.md) |
 | 🔌 **MCP Servers** | [docs/mcp-recommendations.md](docs/mcp-recommendations.md) — recommended MCP servers for each project type |
 | 🔌 **MCP Tool Registry** | [docs/mcp-tools.md](docs/mcp-tools.md) — canonical MCP tool reference |
@@ -468,13 +468,14 @@ on demand to perform specialized tasks. Skills are organized into domains:
 | Domain | Skills |
 |---|---|
 | **Orchestration** | agent-coordination, artifact-management, tdd-with-agents, auto-continue, session-goal, task-system, handoff, orchestration-workflow |
-| **Backend & API** | api-design-patterns, fastapi-async-patterns, database-migration, database-optimization |
+| **Backend | **Backend & API** | api-design-patterns, fastapi-async-patterns, database-migration, database-optimization | API** | api-design-patterns, fastapi-async-patterns, database-migration, database-optimization, rag-pipelines |
 | **Frontend** | frontend-analyzer, nextjs-seo-optimization, visual-review-pipeline |
-| **Infrastructure** | docker-best-practices, streaming-patterns, cache-strategy |
+| **Infrastructure** | docker-best-practices, streaming-patterns, cache-strategy, mcp-security, mcp-server-development |
+| **Quality & Security** | code-review-checklist, quality-gate, security-audit-pro |
 | **Planning & Design** | plan-architecture, codemap, init-deep, interview, metis-gap-analysis |
 | **Memory & Context** | memory-bank, file-prompts, context-compression |
 | **Domain** | remote-sensing-analysis, internet-search |
-| **Utilities** | prompt-improver, agent-evaluation, agent-observability, wisdom-accumulation, simplify, test-architecture, token-audit |
+| **Utilities** | agent-evaluation, agent-observability, wisdom-accumulation, simplify, test-architecture, token-audit |
 
 > See [skills/README.md](skills/README.md) for the complete reference with descriptions
 > and usage patterns.
@@ -702,6 +703,7 @@ pantheon/
 │   ├── optimize-database.prompt.md
 │   ├── sketch.prompt.md
 │   ├── focus.prompt.md
+│   ├── subtask.prompt.md        * bounded child task
 │   ├── quick-discovery-large-codebase.prompt.md
 │   ├── quick-plan-large-feature.prompt.md
 │   ├── semantic-summarize.md
@@ -723,7 +725,7 @@ pantheon/
 │   ├── install.mjs            * multi-platform installer
 │   ├── sync-platforms.mjs     * agent format sync engine
 │   ├── validate-sync.mjs      * sync integrity check
-│       └── hooks/                 * agent lifecycle hooks (8 .sh scripts)
+│   └── hooks/                 * agent lifecycle hooks (8 .sh scripts)
 │       ├── audit-imports.sh
 │       ├── format-multi-language.sh
 │       ├── log-session-start.sh
@@ -734,7 +736,7 @@ pantheon/
 │       ├── validate-talos-scope.sh
 │
 ├── commands/                  # 14 interaction commands
-│   ├── cancel.md
+│   ├── pantheon-cancel.md
 │   ├── pantheon-audit.md
 │   ├── pantheon-deepwork.md
 │   ├── pantheon-focus.md
@@ -744,7 +746,6 @@ pantheon/
 │   ├── pantheon-forget.md            * delete memories
 │   ├── pantheon-search.md            * search memories
 │   ├── pantheon-optimize.md
-│   ├── pantheon-search.md            * search memories
 │   ├── pantheon-sketch.md
 │   ├── pantheon-status.md
 │   ├── pantheon-update.md
@@ -779,7 +780,7 @@ pantheon/
 │
 ├── .github/
 │   ├── copilot-instructions.md
-│   └── workflows/             * CI/CD workflows (9 workflows)
+│   └── workflows/             * CI/CD workflows (10 workflows)
 │       ├── ci.yml             * main CI pipeline
 │       ├── conformance-matrix.yml   * automated release creation
 │       ├── release.yml        * release workflow
@@ -788,6 +789,7 @@ pantheon/
 │       ├── commit-lint.yml    * conventional commit enforcement
 │       ├── docs.yml           * documentation build
 │       ├── codeql.yml         * security scanning
+│       ├── auto-release.yml   * automated release auto-release.yml   * automated release creation publish
 │       └── sync-check.yml     * platform sync integrity
 │
 ├── .vscode/                   — VS Code workspace settings
