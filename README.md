@@ -9,12 +9,14 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
   <a href="docs/platforms/"><img src="https://img.shields.io/badge/platforms-vscode|opencode|claude|cursor|windsurf|cline|continue-green" alt="Platforms"></a>
   <a href="agents/README.md"><img src="https://img.shields.io/badge/agents-14-purple" alt="Agents"></a>
-  <a href="skills/README.md"><img src="https://img.shields.io/badge/skills-44-orange" alt="Skills"></a>
+  <a href="skills/README.md"><img src="https://img.shields.io/badge/skills-40-orange" alt="Skills"></a>
   <a href="commands/"><img src="https://img.shields.io/badge/commands-14-red" alt="Commands"></a>
   <a href="docs/platforms/"><img src="https://img.shields.io/badge/built%20with-copilot|opencode|claude|cursor|windsurf|cline|continue-8250DF" alt="Built with"></a>
-  <a href="https://github.com/ils15/pantheon/actions"><img src="https://img.shields.io/github/actions/workflow/status/ils15/pantheon/ci.yml?branch=main&label=CI" alt="CI"></a>
-  <a href="https://github.com/ils15/pantheon/actions"><img src="https://img.shields.io/github/actions/workflow/status/ils15/pantheon/release.yml?branch=main&label=release" alt="Release"></a>
+  <a href="https://github.com/ils15/pantheon-legacy/actions"><img src="https://img.shields.io/github/actions/workflow/status/ils15/pantheon-legacy/ci.yml?branch=main&label=CI" alt="CI"></a>
+  <a href="https://github.com/ils15/pantheon-legacy/actions"><img src="https://img.shields.io/github/actions/workflow/status/ils15/pantheon-legacy/release.yml?branch=main&label=release" alt="Release"></a>
 </p>
+
+> ⚠️ **LEGACY VERSION** — Development on this repository has been paused. The active development continues in the [pantheon-opencode](https://github.com/ils15/pantheon-opencode) repository (OpenCode-only). This legacy version (v4.0) is preserved for reference and archival purposes.
 
 **14 specialized AI agents** that plan, build, review, and deploy features through enforced TDD, persistent project memory, and human approval at every gate.
 
@@ -49,7 +51,6 @@ Supports **VS Code Copilot**, **OpenCode**, **Claude Code**, **Cursor**, **Winds
 | 🔌 **MCP Servers** | [docs/mcp-recommendations.md](docs/mcp-recommendations.md) — recommended MCP servers for each project type |
 | 🔌 **MCP Tool Registry** | [docs/mcp-tools.md](docs/mcp-tools.md) — canonical MCP tool reference |
 | 🔌 **MCP User Guide** | [docs/mcp-user-guide.md](docs/mcp-user-guide.md) — adding custom MCP servers |
-| 🗂️ **MCP Tiers** | `.pantheon/tiers.json` — 4-tier MCP selection (none/essential/recommended/full) |
 | ⚡ **Quick Start** | [docs/QUICKSTART.md](docs/QUICKSTART.md) |
 | 🖥️ **VS Code** | [docs/platforms/vscode.md](docs/platforms/vscode.md) |
 | ⚡ **OpenCode** | [docs/platforms/opencode.md](docs/platforms/opencode.md) |
@@ -219,7 +220,7 @@ Pantheon runs on 7 platforms. Here is how each supports the framework's key feat
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/ils15/pantheon.git
+git clone https://github.com/ils15/pantheon-legacy.git
 cd pantheon
 npm install
 
@@ -334,9 +335,9 @@ AI Infrastructure
   └── Hephaestus — AI pipelines + conversational AI: RAG, LangChain, NLU, dialogue
 
 Implementation (Parallel Executors)
-  ├── Hermes — backend: FastAPI, async, type-safe APIs
-  ├── Aphrodite — frontend: React, TypeScript, WCAG accessibility
-  └── Demeter — database: SQLAlchemy, Alembic, query optimization
+  ├── Hermes — backend: FastAPI, Python, async, TDD (RED→GREEN→REFACTOR), modern Python stdlib, obsolete lib detection
+  ├── Aphrodite — frontend: React 19, TypeScript strict, WCAG accessibility, responsive design, TDD
+  └── Demeter — database: SQLAlchemy 2.0, Alembic, query optimization, N+1 prevention, TDD migrations
 
 Quality & Observability
   ├── Themis — code review, OWASP security audit, coverage gate
@@ -461,14 +462,14 @@ On-demand compression pipeline archives completed phases into structured context
 
 ## Skill Ecosystem
 
-Pantheon bundles **43 cross-platform skills** — modular instruction sets that agents load
+Pantheon bundles **40 cross-platform skills** — modular instruction sets that agents load
 on demand to perform specialized tasks. Skills are organized into domains:
 
 | Domain | Skills |
 |---|---|
 | **Orchestration** | agent-coordination, artifact-management, tdd-with-agents, auto-continue, session-goal, task-system, handoff, orchestration-workflow |
 | **Backend & API** | api-design-patterns, fastapi-async-patterns, database-migration, database-optimization |
-| **Frontend** | frontend-analyzer, nextjs-seo-optimization |
+| **Frontend** | frontend-analyzer, nextjs-seo-optimization, visual-review-pipeline |
 | **Infrastructure** | docker-best-practices, streaming-patterns, cache-strategy |
 | **Planning & Design** | plan-architecture, codemap, init-deep, interview, metis-gap-analysis |
 | **Memory & Context** | memory-bank, file-prompts, context-compression |
@@ -552,7 +553,7 @@ Pantheon supports 7 platforms. Pick the one that matches your editor:
 Installation varies by platform, but generally involves:
 
 ```bash
-git clone https://github.com/ils15/pantheon.git
+git clone https://github.com/ils15/pantheon-legacy.git
 cd pantheon
 
 # Optional: install dependencies for sync/install tools
@@ -587,12 +588,14 @@ Pantheon provides slash commands via OpenCode. On other platforms (Copilot, Curs
 | `/pantheon-install` | zeus | Sync + install + verify pipeline with `--tier` (none/essential/recommended/full), `--backup`, `--detect`, `--dry-run` |
 | `/pantheon-update` | iris | Version bump + changelog + git tag + GitHub Release |
 | `/pantheon-deepwork` | zeus | Heavy multi-phase task with persisted checkpoints |
-| `/pantheon-reflect` | zeus | Analyze repeated work friction, suggest improvements |
 | `/pantheon-focus` | zeus | Pin a session goal |
 | `/pantheon-sketch` | athena | Turn rough idea into spec |
 | `/pantheon-audit` | themis | Code review + security audit |
+ | `/pantheon-remember` | mnemosyne | Store a new memory entry
+| `/pantheon-search` | mnemosyne | Search across all memories
+| `/pantheon-consolidate` | mnemosyne | Compress old memories
+| `/pantheon-forget` | mnemosyne | Delete a specific memory
 | `/pantheon-optimize` | zeus | Context optimization & token audit |
-| `/pantheon-metamorphosis` | zeus | Intelligent refactoring with TDD |
 | `/pantheon-status` | zeus | Show system health and agent status |
 | `/cancel` | zeus | Stop auto-continuation |
 
@@ -635,7 +638,7 @@ pantheon/
 │   ├── hephaestus.agent.md    — AI pipelines
 │   └── README.md
 │
-├── skills/                    — 44 cross-platform skill modules
+├── skills/                    — 40 cross-platform skill modules
 │   ├── README.md
 │   ├── agent-coordination/    * orchestration & coordination
 │   ├── artifact-management/
@@ -682,11 +685,10 @@ pantheon/
 ├── instructions/              — 10 domain coding standards
 │   ├── agent-return-format.instructions.md
 │   ├── backend-standards.instructions.md
-│   ├── code-quality-checks.instructions.md
-│   ├── database-standards.instructions.md
+│   ├── checkpoint-standards.instructions.md
 │   ├── documentation-standards.instructions.md
 │   ├── frontend-standards.instructions.md
-│   ├── infra-standards.instructions.md
+│   ├── memory-protocol.instructions.md
 │   ├── zeus-anti-stall.instructions.md
 │   ├── zeus-communication-rules.instructions.md
 │   ├── zeus-council-synthesis.instructions.md
@@ -721,7 +723,7 @@ pantheon/
 │   ├── install.mjs            * multi-platform installer
 │   ├── sync-platforms.mjs     * agent format sync engine
 │   ├── validate-sync.mjs      * sync integrity check
-│       └── hooks/                 * agent lifecycle hooks (10 .sh scripts)
+│       └── hooks/                 * agent lifecycle hooks (8 .sh scripts)
 │       ├── audit-imports.sh
 │       ├── format-multi-language.sh
 │       ├── log-session-start.sh
@@ -729,19 +731,20 @@ pantheon/
 │       ├── on-subagent-delegation-stop.sh
 │       ├── run-type-check.sh
 │       ├── scan-secrets.sh
-│       ├── validate-post-conditions.sh
 │       ├── validate-talos-scope.sh
-│       └── validate-tool-safety.sh
 │
-├── commands/                  # 19 interaction commands
+├── commands/                  # 14 interaction commands
 │   ├── cancel.md
 │   ├── pantheon-audit.md
 │   ├── pantheon-deepwork.md
 │   ├── pantheon-focus.md
 │   ├── pantheon-install.md
-│   ├── pantheon-metamorphosis.md
+│   ├── pantheon-remember.md          * store memories
+│   ├── pantheon-consolidate.md       * compress memories
+│   ├── pantheon-forget.md            * delete memories
+│   ├── pantheon-search.md            * search memories
 │   ├── pantheon-optimize.md
-│   ├── pantheon-reflect.md
+│   ├── pantheon-search.md            * search memories
 │   ├── pantheon-sketch.md
 │   ├── pantheon-status.md
 │   ├── pantheon-update.md
@@ -761,7 +764,7 @@ pantheon/
 │   │   ├── windsurf.md
 │   │   ├── cline.md
 │   │   └── continue.md
-│   └── memory-bank/           — project memory (Mnemosyne's domain)
+│   └── memory-bank/           — project memory (Mnemosyne domain) — needs init
 │       ├── 00-project.md      * project overview
 │       ├── 01-active-context.md * current sprint focus (priority file)
 │       ├── 02-progress-log.md * completed milestones (append-only)
@@ -939,13 +942,11 @@ Create IMPLEMENTATION_SUMMARY.md with what we did
 
 **Agent hooks enforce at runtime (`scripts/hooks/` + `.opencode/plugins/pantheon-hooks.ts`):**
 - `scan-secrets.sh` — detects hardcoded secrets and credentials (PreToolUse)
-- `validate-tool-safety.sh` — blocks destructive operations (PreToolUse)
 - `validate-talos-scope.sh` — restricts Talos hotfix scope (PreToolUse)
 - `on-subagent-delegation-start.sh` — tracks delegation start (PreToolUse)
 - `format-multi-language.sh` — auto-formats modified files (PostToolUse)
 - `log-session-start.sh` — audit trail of sessions (PostToolUse)
 - `on-subagent-delegation-stop.sh` — delegation cleanup (PostToolUse)
-- `validate-post-conditions.sh` — post-condition validation (event)
 
 The `.opencode/plugins/pantheon-hooks.ts` plugin bridges these shell scripts to OpenCode events. OpenCode auto-discovers plugins from `.opencode/plugins/` when running from the project directory.
 
